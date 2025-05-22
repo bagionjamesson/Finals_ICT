@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Course</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,600,700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="../logo.png"> <!-- Assuming logo.png is in the parent directory (public/) -->
+  <!-- Removed invalid stylesheet link: <link rel="stylesheet" href="my-website/public/menu.html"> -->
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Montserrat', Arial, sans-serif;
+      background: #f5f7fa;
+      color: #204080;
+    }
+    /* ===== NAVBAR ===== */
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #285197;
+      padding: 0 48px;
+      height: 70px;
+    }
+    .navbar-left {
+      display: flex;
+      align-items: center;
+    }
+    .navbar-logo {
+      width: 2em;
+      height: 2em;
+      margin-right: 14px;
+      border-radius: 0;      /* Square logo */
+      object-fit: cover;
+      vertical-align: middle;
+    }
+    .navbar-title {
+      color: #fff;
+      font-size: 1.6em;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      display: flex;
+      align-items: center;
+    }
+    .navbar-title .auto { color: #fff; }
+    .navbar-title .learn { color: #FFD600; margin-left: 2px; }
+    .navbar-title .ph { color: #fff; font-size: 1em; font-weight: 500; margin-left: 4px; }
+    .navbar-menu {
+      display: flex;
+      align-items: center;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .navbar-menu li { margin-left: 32px; }
+    .navbar-menu li a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 1em;
+      font-weight: 600;
+      padding: 8px 18px;
+      border-radius: 6px;
+      transition: background 0.2s, color 0.2s;
+      background: transparent;
+    }
+    .navbar-menu li a.active,
+    .navbar-menu li a:hover {
+      background: #4666a3;
+      color: #fff;
+    }
+
+    /* ===== SECTION 1: HERO ===== */
+    .section-blue {
+      background: #b3c6e0;
+      color: #204080;
+      padding: 56px 0 48px 0;
+      text-align: center;
+    }
+    .section-blue .main-title {
+      font-size: 2.6em;
+      font-weight: 700;
+      margin-bottom: 18px;
+      margin-top: 32px;
+    }
+    .section-blue .subtitle {
+      font-size: 1.2em;
+      font-weight: 400;
+      margin-bottom: 32px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.5;
+    }
+    .start-btn {
+      background: #FFD600;
+      color: #285197;
+      font-weight: 700;
+      padding: 16px 40px;
+      border: none;
+      border-radius: 8px;
+      font-size: 1.2em;
+      text-decoration: none;
+      margin-top: 24px;
+      display: inline-block;
+      transition: background 0.2s, color 0.2s;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    }
+    .start-btn:hover {
+      background: #ffe066;
+      color: #204080;
+    }
+
+    /* ===== SECTION 2: FEATURES ===== */
+    .section-white {
+      background: #b3c6e0;
+      color: #204080;
+      padding: 56px 0 48px 0;
+      text-align: center;
+    }
+    .features {
+      display: flex;
+      justify-content: center;
+      gap: 36px;
+      margin-top: 32px;
+      flex-wrap: wrap;
+    }
+    .feature-box {
+      background: #ffffff;
+      color: #ffffff;
+      border-radius: 16px;
+      box-shadow: 0 2px 12px rgba(40,81,151,0.13);
+      padding: 32px 28px;
+      width: 320px;
+      min-height: 220px;
+      transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .feature-box:hover {
+      transform: translateY(-8px) scale(1.03);
+      box-shadow: 0 8px 24px rgba(40,81,151,0.18);
+      background: #2a60b1;
+    }
+    .feature-title {
+      font-size: 1.3em;
+      font-weight: 700;
+      margin-bottom: 14px;
+      color: #FFD600;
+    }
+    .feature-desc {
+      font-size: 1em;
+      color: #000000;
+      line-height: 1.5;
+    }
+
+    /* ===== SECTION 2: LESSON/VIDEO PRESENTATION ===== */
+    .lesson-video-container {
+      background: #fff;
+      border-radius: 18px;
+      min-height: 380px;
+      max-width: 900px;
+      margin: 0 auto;
+      margin-top: 32px; /* Keep top margin */
+      margin-bottom: 32px; /* Keep bottom margin */
+      box-shadow: 0 4px 24px rgba(40,81,151,0.10);
+      display: flex;
+      flex-direction: row; /* Arrange items horizontally */
+      align-items: flex-start; /* Align items to the top */
+      justify-content: flex-start; /* Start items from the left */
+      flex-wrap: wrap; /* Allow items to wrap to the next line if space runs out */
+      gap: 30px; /* Add space between cards */
+      padding: 40px; /* Add padding inside the box */
+      /* font-size: 1.4em; */ /* Removed to allow content to define its own size */
+      /* color: #b3c6e0; */ /* Removed as content will have its own color */
+    }
+
+    /* ===== CAR LESSON CARD STYLES ===== */
+    .car-lesson-card {
+      display: flex; /* Use flexbox to stack content */
+      flex-direction: column;
+      align-items: center; /* Center content horizontally */
+      text-decoration: none; /* Remove underline from link */
+      background-color: #FFD600; /* Bright yellow background */
+      color: #204080; /* Dark blue text */
+      padding: 30px 20px; /* Padding inside the card */
+      border-radius: 16px; /* Rounded corners */
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1); /* Subtle shadow */
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      width: 220px; /* Fixed width for the card */
+      min-height: 180px; /* Ensure a decent height */
+      text-align: center; /* Center text content within the card */
+      /* margin-bottom: 20px; Removed as gap property on parent handles spacing */
+      justify-content: center; /* Vertically center content within the card */
+    }
+
+    .car-lesson-card:hover {
+      transform: translateY(-5px); /* Lift effect on hover */
+      box-shadow: 0 8px 16px rgba(0,0,0,0.15); /* Slightly larger shadow on hover */
+    }
+
+    .card-emoji {
+      font-size: 3em; /* Large emoji size */
+      /* font-weight: 600; If emoji is text-based and supports weight */
+      margin-bottom: 10px; /* Space below emoji */
+    }
+
+    .card-title {
+      font-size: 1.5em; /* Size for "Car" text */
+      font-weight: bold;
+      margin-top: 0; /* Reset margin if emoji has margin-bottom */
+      margin-bottom: 5px; /* Space above subtitle */
+    }
+
+    .card-subtitle {
+      font-size: 0.9em; /* Smaller size for subtitle */
+    }
+
+    /* Utility class if needed for other elements, though not used by the card directly */
+    .hidden {
+      display: none !important;
+    }
+    .lesson-box-link {
+      text-decoration: none;
+      color: #204080;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .lesson-box {
+      background: #FFD600;
+      color: #285197;
+      padding: 32px 32px;
+      border-radius: 10px;
+      font-size: 1.2em;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 200px;
+      height: 200px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+      margin-top: 16px;
+      transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+    }
+    .lesson-box:hover {
+      background: #ffe066;
+      color: #204080;
+      box-shadow: 0 6px 18px rgba(40,81,151,0.18);
+    }
+
+    /* ===== SECTION 3: FOOTER ===== */
+    .footer-section {
+      background: #285197;
+      color: #204080;
+      padding: 48px 0 24px 0;
+      text-align: center;
+    }
+    .footer-columns {
+      display: flex;
+      justify-content: center;
+      gap: 56px;
+      flex-wrap: wrap;
+      margin-bottom: 0;
+    }
+    .footer-col {
+      min-width: 220px;
+      text-align: left;
+      flex: 1 1 0;
+      background: #285197;
+      border-radius: 14px;
+      box-shadow: 0 4px 18px rgba(40,81,151,0.18);
+      padding: 24px 18px;
+      margin: 0 0 24px 0;
+      transition: box-shadow 0.2s, background 0.2s;
+      color: #204080;
+    }
+    .footer-col h3 {
+      color: #ffffff;
+      font-size: 1.1em;
+      font-weight: 700;
+      margin-bottom: 12px;
+      position: relative;
+      display: inline-block;
+    }
+    .footer-underline {
+      display: block;
+      height: 3px;
+      width: 36px;
+      background: #FFD600;
+      border-radius: 2px;
+      margin-top: 4px;
+      position: absolute;
+      left: 0;
+      bottom: -8px;
+      content: "";
+    }
+    .footer-desc {
+      font-size: 1em;
+      margin-bottom: 24px;
+      color: #fff;
+      max-width: 320px;
+    }
+    .footer-col ul {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 12px 0;
+    }
+    .footer-col ul li {
+      margin-bottom: 10px;
+    }
+    .footer-col ul li a {
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 1em;
+      transition: color 0.2s;
+    }
+    .footer-col ul li a:hover {
+      color: #ffffff;
+    }
+    .footer-contact {
+      font-size: 1em;
+      color: #ffffff;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+    }
+    .footer-social-link svg,
+    .footer-contact .footer-social-link svg {
+      transition: fill 0.2s, color 0.2s;
+    }
+    .footer-social-link.mail:hover svg { fill: #FFD600; }
+    .footer-social-link.phone:hover svg { fill: #4CAF50; }
+    .footer-social-link.location:hover svg { fill: #03a9f4; }
+    .footer-social-link { vertical-align: middle; margin-right: 10px; }
+    .footer-social-link:last-child { margin-right: 0; }
+    .footer-icon { margin-right: 8px; }
+    .footer-bottom {
+      text-align: center;
+      font-size: 0.98em;
+      color: #b3c6e0;
+      margin-top: 0;
+      padding-bottom: 18px;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 900px) {
+      .features, .footer-columns {
+        flex-direction: column;
+        align-items: center;
+        gap: 24px;
+      }
+      .navbar {
+        flex-direction: column;
+        height: auto;
+        padding: 0 16px;
+      }
+      .navbar-menu {
+        margin-top: 12px;
+      }
+      .footer-col {
+        min-width: 0;
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation/Menu -->
+  <nav class="navbar">
+    <div class="navbar-left">
+      <a href="../menu.html" style="display: flex; align-items: center; text-decoration: none;"> <!-- Path to menu.html from Course/ -->
+        <img src="../logo.png" alt="Logo" class="navbar-logo"> <!-- Path to logo.png from Course/ -->
+        <div class="navbar-title">
+          <span class="auto">Auto</span><span class="learn">Learn</span> <span class="ph">PH</span>
+        </div>
+      </a>
+    </div>
+    <ul class="navbar-menu">
+      <li><a href="../index.html">Home</a></li> <!-- Path to index.html from Course/ -->
+      <li><a href="../lessons.html" class="active">Lessons</a></li> <!-- Assuming Course is part of Lessons, make active -->
+      <li><a href="../materials.html">Learning Materials</a></li> <!-- Path to materials.html from Course/ -->
+      <li><a href="../about.html">About Us</a></li> <!-- Path to about.html from Course/ -->
+    </ul>
+  </nav>
+
+  <!-- Section 1: Blue -->
+  <section class="section section-blue">
+    <!-- You can add a title for the Course page here if you like -->
+    <!-- e.g., <h1 class="main-title">Our Courses</h1> -->
+  </section>
+
+  <!-- Section 2: Lesson/Video Presentation (same background as navbar/section 1) -->
+  <section class="section section-blue">
+    <div class="lesson-video-container">
+      <!-- Car Lesson Card Button -->
+      <a href="lesson/lesson1.html" class="car-lesson-card"> <!-- Adjusted link to lesson1.html -->
+        <span class="card-emoji">🚗</span> <!-- Car Emoji -->
+        <span class="card-title">Basic Automotive</span> <!-- Updated Bold Title -->
+      </a>
+    </div>
+  </section>
+
+  <!-- Section 3: Footer/Links -->
+  <footer class="footer-section">
+    <div class="footer-columns">
+      <!-- Column 1: About -->
+      <div class="footer-col">
+        <h3>AutoLearn PH <span class="footer-underline"></span></h3>
+        <div class="footer-desc">
+          Your complete automotive learning companion designed for Filipino learners. Aligned with TESDA standards and industry best practices.
+        </div>
+      </div>
+      <!-- Column 2: Quick Links -->
+      <div class="footer-col">
+        <h3>Quick Links <span class="footer-underline"></span></h3>
+        <ul>
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../lessons.html">Lessons</a></li>
+          <li><a href="../materials.html">Learning Materials</a></li>
+          <li><a href="../about.html">About Us</a></li>
+        </ul>
+      </div>
+      <!-- Column 3: Learning Resources -->
+      <div class="footer-col">
+        <h3>Learning Resources <span class="footer-underline"></span></h3>
+        <ul>
+          <li><a href="https://e-tesda.gov.ph/" target="_blank">TESDA Online</a></li>
+          <li><a href="https://www.youtube.com/@TESDAOfficial" target="_blank">TESDA YouTube</a></li>
+          <li><a href="#">Automotive Forums</a></li>
+          <li><a href="#">Video Tutorials</a></li>
+        </ul>
+      </div>
+      <!-- Column 4: Contact Us -->
+      <div class="footer-col">
+        <h3>Contact Us <span class="footer-underline"></span></h3>
+        <div class="footer-contact">
+          <a href="mailto:contact@autolearn.ph" class="footer-social-link mail" aria-label="Email">
+            <svg class="footer-icon" width="20" height="20" fill="#FFD600" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 2v.01L12 13 4 6.01V6h16zM4 20v-9.99l7.99 7.99c.39.39 1.02.39 1.41 0L20 10.01V20H4z"/></svg>
+          </a>
+          contact@autolearn.ph
+        </div>
+        <div class="footer-contact">
+          <a href="tel:+639123456789" class="footer-social-link phone" aria-label="Phone">
+            <svg class="footer-icon" width="20" height="20" fill="#FFD600" viewBox="0 0 24 24"><path d="M6.62 10.79a15.053 15.053 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.07 21 3 13.93 3 5a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.46.57 3.58a1 1 0 0 1-.24 1.01l-2.2 2.2z"/></svg>
+          </a>
+          +63 912 345 6789
+        </div>
+        <div class="footer-contact">
+          <a href="https://goo.gl/maps/xyz" target="_blank" class="footer-social-link location" aria-label="Location">
+            <svg class="footer-icon" width="20" height="20" fill="#FFD600" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+          </a>
+          Manila, Philippines
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <hr style="border: none; border-top: 1px solid #3b4e7a; margin: 24px 0 12px 0;">
+      © 2023 AutoLearn PH. All rights reserved.
+    </div>
+  </footer>
+  <!-- If you need JavaScript for this page, it would go here -->
+  <!-- For just this card button, no JS is strictly needed unless you want to add more dynamic behavior -->
+</body>
+</html>

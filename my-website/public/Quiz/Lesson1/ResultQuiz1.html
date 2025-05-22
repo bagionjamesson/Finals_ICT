@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Quiz 1 Results</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,600,700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="../../logo.png">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Montserrat', Arial, sans-serif;
+      background: #f5f7fa;
+      color: #204080;
+    }
+    /* ===== NAVBAR ===== */
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #285197;
+      padding: 0 48px;
+      height: 70px;
+    }
+    .navbar-left {
+      display: flex;
+      align-items: center;
+    }
+    .navbar-logo {
+      width: 2em;
+      height: 2em;
+      margin-right: 14px;
+      border-radius: 0;      /* Square logo */
+      object-fit: cover;
+      vertical-align: middle;
+    }
+    .navbar-title {
+      color: #fff;
+      font-size: 1.6em;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      display: flex;
+      align-items: center;
+    }
+    .navbar-title .auto { color: #fff; }
+    .navbar-title .learn { color: #FFD600; margin-left: 2px; }
+    .navbar-title .ph { color: #fff; font-size: 1em; font-weight: 500; margin-left: 4px; }
+    .navbar-menu {
+      display: flex;
+      align-items: center;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .navbar-menu li { margin-left: 32px; }
+    .navbar-menu li a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 1em;
+      font-weight: 600;
+      padding: 8px 18px;
+      border-radius: 6px;
+      transition: background 0.2s, color 0.2s;
+      background: transparent;
+    }
+    .navbar-menu li a.active,
+    .navbar-menu li a:hover {
+      background: #4666a3;
+      color: #fff;
+    }
+
+    /* ===== SECTION STYLES (e.g., for background) ===== */
+    .section-blue {
+      background: #b3c6e0; /* Light blue background for the section */
+      color: #204080;     /* Default text color for content directly in section-blue */
+      padding: 56px 20px 48px 20px; /* Added horizontal padding */
+      text-align: center;
+    }
+
+    /* ===== RESULTS PAGE SPECIFIC STYLES ===== */
+    .results-container {
+      max-width: 700px;
+      margin: 20px auto; /* Centering the white box */
+      background: #fff;  /* White box for results content */
+      padding: 30px 25px;
+      border-radius: 16px;
+      box-shadow: 0 4px 24px rgba(40,81,151,0.15);
+      text-align: center; /* Center text content within the box */
+      color: #204080;     /* Text color inside the white box */
+    }
+
+    #quiz-header h2 { /* Style for the "Quiz 1 Results" title */
+        font-size: 2.2em;
+        font-weight: 700;
+        color: #204080; /* Dark blue, consistent with other titles */
+        margin-bottom: 10px;
+    }
+
+    #score-display {
+      font-size: 1.8em;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    #result-message {
+      font-size: 1.3em;
+      font-weight: 600;
+      margin-bottom: 25px;
+    }
+
+    .message-pass {
+      color: #4CAF50; /* Green text for pass */
+    }
+
+    .message-fail {
+      color: #f44336; /* Red text for fail */
+    }
+
+    .results-navigation {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column; /* Stack buttons vertically by default */
+      align-items: center;
+      gap: 15px; /* Space between buttons */
+    }
+
+    .result-btn {
+      display: inline-block;
+      padding: 14px 28px;
+      border: none;
+      border-radius: 8px;
+      font-size: 1.1em;
+      font-weight: 700;
+      text-decoration: none;
+      color: #fff;
+      text-align: center;
+      transition: background-color 0.2s, opacity 0.2s, transform 0.2s;
+      min-width: 260px; /* Ensure buttons have a decent width */
+      box-sizing: border-box;
+      cursor: pointer;
+    }
+    .result-btn:hover:not(.btn-disabled) {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .btn-pass {
+      background-color: #4CAF50; /* Green */
+    }
+    .btn-pass:hover {
+      background-color: #45a049;
+    }
+
+    .btn-fail {
+      background-color: #f44336; /* Red */
+    }
+    .btn-fail:hover {
+      background-color: #d32f2f; /* Darker red */
+    }
+
+    .btn-disabled {
+      background-color: #cccccc; /* Gray */
+      color: #666666;
+      cursor: not-allowed;
+      opacity: 0.7;
+      pointer-events: none; /* Makes the link unclickable */
+    }
+
+    /* ===== FOOTER ===== */
+    .footer-section {
+      background: #285197;
+      color: #fff; /* Text color for footer content */
+      padding: 48px 20px 24px 20px; /* Added horizontal padding */
+      text-align: center;
+    }
+    .footer-columns {
+      display: flex;
+      justify-content: center;
+      gap: 40px; /* Adjusted gap */
+      flex-wrap: wrap;
+      margin-bottom: 24px; /* Space above bottom text */
+      max-width: 1200px; /* Max width for footer columns */
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .footer-col {
+      min-width: 200px; /* Adjusted min-width */
+      text-align: left;
+      flex: 1 1 220px; /* Allow flex grow, shrink, with a base */
+      /* Removed background, shadow, padding from individual columns for a flatter footer design */
+      margin-bottom: 20px;
+    }
+    .footer-col h3 {
+      color: #ffffff;
+      font-size: 1.1em;
+      font-weight: 700;
+      margin-bottom: 16px; /* Increased space */
+      position: relative;
+      display: inline-block;
+    }
+    .footer-underline {
+      display: block;
+      height: 3px;
+      width: 36px;
+      background: #FFD600;
+      border-radius: 2px;
+      margin-top: 4px;
+      /* position: absolute; left: 0; bottom: -8px; -- Adjusted to be under text */
+    }
+     .footer-col h3 .footer-underline { /* Simpler underline */
+        display: block;
+        height: 3px;
+        width: 36px;
+        background: #FFD600;
+        border-radius: 2px;
+        margin-top: 6px;
+    }
+    .footer-desc {
+      font-size: 0.95em; /* Slightly smaller */
+      margin-bottom: 20px;
+      color: #e0e0e0; /* Lighter text for description */
+      line-height: 1.6;
+    }
+    .footer-col ul {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 12px 0;
+    }
+    .footer-col ul li {
+      margin-bottom: 10px;
+    }
+    .footer-col ul li a {
+      color: #e0e0e0;
+      text-decoration: none;
+      font-size: 0.95em;
+      transition: color 0.2s;
+    }
+    .footer-col ul li a:hover {
+      color: #FFD600; /* Highlight on hover */
+    }
+    .footer-contact {
+      font-size: 0.95em;
+      color: #e0e0e0;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+    }
+    .footer-social-link svg {
+      transition: fill 0.2s;
+      fill: #FFD600; /* Default icon color */
+    }
+    .footer-social-link:hover svg {
+        fill: #fff; /* Icon color on hover */
+    }
+    .footer-icon { margin-right: 10px; vertical-align: middle; }
+
+    .footer-bottom {
+      text-align: center;
+      font-size: 0.9em;
+      color: #b3c6e0;
+      margin-top: 24px; /* Space from columns */
+      padding-top: 20px; /* Space from hr */
+      padding-bottom: 18px;
+      border-top: 1px solid #3b4e7a; /* Separator line */
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 900px) {
+      .navbar {
+        flex-direction: column;
+        height: auto;
+        padding: 16px; /* Adjusted padding */
+      }
+      .navbar-left {
+        margin-bottom: 12px; /* Space between logo and menu on mobile */
+      }
+      .navbar-menu {
+        flex-direction: column; /* Stack menu items */
+        width: 100%;
+        margin-top: 12px;
+      }
+      .navbar-menu li {
+        margin-left: 0;
+        width: 100%;
+        text-align: center; /* Center menu items */
+        margin-bottom: 8px; /* Space between stacked items */
+      }
+      .navbar-menu li a {
+        display: block; /* Make links full width */
+        padding: 10px;
+      }
+      .footer-columns {
+        flex-direction: column;
+        align-items: center; /* Center columns on mobile */
+        gap: 20px;
+      }
+      .footer-col {
+        min-width: 0;
+        width: 100%;
+        max-width: 320px; /* Max width for centered columns */
+        text-align: center; /* Center text in columns on mobile */
+      }
+       .footer-col h3 { display: block; } /* Ensure underline is under centered h3 */
+       .footer-col h3 .footer-underline { margin-left: auto; margin-right: auto; }
+       .footer-contact { justify-content: center; }
+    }
+
+    @media (min-width: 600px) {
+      .results-navigation {
+        flex-direction: row; /* Buttons side-by-side on larger screens */
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation/Menu -->
+  <nav class="navbar">
+    <div class="navbar-left">
+      <a href="../../menu.html" style="display: flex; align-items: center; text-decoration: none;">
+        <img src="../../logo.png" alt="Logo" class="navbar-logo">
+        <div class="navbar-title">
+          <span class="auto">Auto</span><span class="learn">Learn</span> <span class="ph">PH</span>
+        </div>
+      </a>
+    </div>
+    <ul class="navbar-menu">
+      <li><a href="../../index.html">Home</a></li>
+      <li><a href="../../lessons.html">Lessons</a></li>
+      <li><a href="../../materials.html">Learning Materials</a></li>
+      <li><a href="../../about.html">About Us</a></li>
+    </ul>
+  </nav>
+
+  <!-- Section for Results -->
+  <section class="section section-blue">
+    <div id="quiz-header" style="padding-bottom: 20px;">
+        <h2>Quiz 1 Results</h2>
+    </div>
+    <div class="results-container">
+        <p id="score-display">Loading score...</p>
+        <p id="result-message"></p>
+        <div class="results-navigation">
+            <a href="#" id="evaluation-btn" class="result-btn" role="button" aria-disabled="true">Go to Course Evaluation</a>
+            <a href="#" id="retake-btn" class="result-btn" role="button" aria-disabled="true">Retake Quiz</a>
+        </div>
+    </div>
+  </section>
+
+  <!-- Footer/Links -->
+  <footer class="footer-section">
+    <div class="footer-columns">
+      <div class="footer-col">
+        <h3>AutoLearn PH <span class="footer-underline"></span></h3>
+        <div class="footer-desc">
+          Your complete automotive learning companion designed for Filipino learners. Aligned with TESDA standards and industry best practices.
+        </div>
+      </div>
+      <div class="footer-col">
+        <h3>Quick Links <span class="footer-underline"></span></h3>
+        <ul>
+          <li><a href="../../index.html">Home</a></li>
+          <li><a href="../../lessons.html">Lessons</a></li>
+          <li><a href="../../materials.html">Learning Materials</a></li>
+          <li><a href="../../about.html">About Us</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3>Learning Resources <span class="footer-underline"></span></h3>
+        <ul>
+          <li><a href="https://e-tesda.gov.ph/" target="_blank" rel="noopener noreferrer">TESDA Online</a></li>
+          <li><a href="https://www.youtube.com/@TESDAOfficial" target="_blank" rel="noopener noreferrer">TESDA YouTube</a></li>
+          <li><a href="#">Automotive Forums</a></li>
+          <li><a href="#">Video Tutorials</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3>Contact Us <span class="footer-underline"></span></h3>
+        <div class="footer-contact">
+          <a href="mailto:contact@autolearn.ph" class="footer-social-link mail" aria-label="Email">
+            <svg class="footer-icon" width="20" height="20" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 2v.01L12 13 4 6.01V6h16zM4 20v-9.99l7.99 7.99c.39.39 1.02.39 1.41 0L20 10.01V20H4z"/></svg>
+          </a>
+          contact@autolearn.ph
+        </div>
+        <div class="footer-contact">
+          <a href="tel:+639123456789" class="footer-social-link phone" aria-label="Phone">
+            <svg class="footer-icon" width="20" height="20" viewBox="0 0 24 24"><path d="M6.62 10.79a15.053 15.053 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.07 21 3 13.93 3 5a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.46.57 3.58a1 1 0 0 1-.24 1.01l-2.2 2.2z"/></svg>
+          </a>
+          +63 912 345 6789
+        </div>
+        <div class="footer-contact">
+          <a href="https://goo.gl/maps/xyz" target="_blank" rel="noopener noreferrer" class="footer-social-link location" aria-label="Location">
+            <svg class="footer-icon" width="20" height="20" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+          </a>
+          Manila, Philippines
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © 2023 AutoLearn PH. All rights reserved.
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const scoreDisplay = document.getElementById('score-display');
+        const resultMessage = document.getElementById('result-message');
+        const evaluationBtn = document.getElementById('evaluation-btn');
+        const retakeBtn = document.getElementById('retake-btn');
+
+        // Hide buttons by default, they will be shown based on logic
+        evaluationBtn.style.display = 'none';
+        retakeBtn.style.display = 'none';
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const scoreStr = urlParams.get('score');
+        const totalStr = urlParams.get('total');
+
+        if (scoreStr === null || totalStr === null) {
+            scoreDisplay.textContent = "Error: Score data missing.";
+            resultMessage.textContent = "Could not load results. Please ensure you completed the quiz correctly.";
+            return;
+        }
+
+        const score = parseInt(scoreStr);
+        const total = parseInt(totalStr);
+
+        if (isNaN(score) || isNaN(total) || total <= 0) {
+            scoreDisplay.textContent = "Error: Invalid score data.";
+            resultMessage.textContent = "Could not load results due to invalid data.";
+            return;
+        }
+
+        const percentage = Math.round((score / total) * 100);
+        scoreDisplay.textContent = `Your Score: ${score} out of ${total} (${percentage}%)`;
+
+        const passingPercentage = 70;
+
+        // Reset button base classes
+        evaluationBtn.className = 'result-btn'; // Base class
+        retakeBtn.className = 'result-btn';     // Base class
+
+        if (percentage >= passingPercentage) {
+            resultMessage.textContent = "Congratulations, you passed!";
+            resultMessage.className = 'message-pass';
+
+            evaluationBtn.href = 'evalutation.html'; // Link to evaluation page
+            evaluationBtn.classList.add('btn-pass');
+            evaluationBtn.removeAttribute('aria-disabled');
+            evaluationBtn.style.display = 'inline-block'; // Show evaluation button
+            // retakeBtn remains display: 'none'
+        } else {
+            resultMessage.textContent = "You did not pass. Please review the material and try again.";
+            resultMessage.className = 'message-fail';
+
+            retakeBtn.href = 'Quiz1.html'; // Link to retake quiz
+            retakeBtn.classList.add('btn-fail');
+            retakeBtn.removeAttribute('aria-disabled');
+            retakeBtn.style.display = 'inline-block'; // Show retake button
+            // evaluationBtn remains display: 'none'
+        }
+    });
+  </script>
+</body>
+</html>

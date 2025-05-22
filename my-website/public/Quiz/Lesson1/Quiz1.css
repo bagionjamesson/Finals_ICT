@@ -1,0 +1,417 @@
+body {
+  margin: 0;
+  font-family: 'Montserrat', Arial, sans-serif;
+  background: #f5f7fa;
+  color: #204080;
+}
+/* ===== NAVBAR ===== */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #285197;
+  padding: 0 48px;
+  height: 70px;
+}
+.navbar-left {
+  display: flex;
+  align-items: center;
+}
+.navbar-logo {
+  width: 2em;
+  height: 2em;
+  margin-right: 14px;
+  border-radius: 0;      /* Square logo */
+  object-fit: cover;
+  vertical-align: middle;
+}
+.navbar-title {
+  color: #fff;
+  font-size: 1.6em;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+}
+.navbar-title .auto { color: #fff; }
+.navbar-title .learn { color: #FFD600; margin-left: 2px; }
+.navbar-title .ph { color: #fff; font-size: 1em; font-weight: 500; margin-left: 4px; }
+.navbar-menu {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.navbar-menu li { margin-left: 32px; }
+.navbar-menu li a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1em;
+  font-weight: 600;
+  padding: 8px 18px;
+  border-radius: 6px;
+  transition: background 0.2s, color 0.2s;
+  background: transparent;
+}
+.navbar-menu li a.active,
+.navbar-menu li a:hover {
+  background: #4666a3;
+  color: #fff;
+}
+
+/* ===== SECTION 1: HERO ===== */
+.section-blue {
+  background: #b3c6e0;
+  color: #204080;
+  padding: 56px 0 48px 0;
+  text-align: center;
+}
+.section-blue .main-title {
+  font-size: 2.6em;
+  font-weight: 700;
+  margin-bottom: 18px;
+  margin-top: 32px;
+}
+.section-blue .subtitle {
+  font-size: 1.2em;
+  font-weight: 400;
+  margin-bottom: 32px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.5;
+}
+.start-btn {
+  background: #FFD600;
+  color: #285197;
+  font-weight: 700;
+  padding: 16px 40px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.2em;
+  text-decoration: none;
+  margin-top: 24px;
+  display: inline-block;
+  transition: background 0.2s, color 0.2s;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  cursor: pointer; /* Added for better UX on buttons */
+}
+.start-btn:hover {
+  background: #ffe066;
+  color: #204080;
+}
+
+/* ===== SECTION 2: FEATURES ===== */
+.section-white {
+  background: #b3c6e0;
+  color: #000000; /* Changed default text color to black */
+  padding: 56px 0 48px 0;
+  text-align: center;
+}
+.features {
+  display: flex;
+  justify-content: center;
+  gap: 36px;
+  margin-top: 32px;
+  flex-wrap: wrap;
+}
+.feature-box {
+  background: #ffffff;
+  /* color: #ffffff; Removed so it inherits from .section-white (now black) */
+  border-radius: 16px;
+  box-shadow: 0 2px 12px rgba(40,81,151,0.13);
+  padding: 32px 28px;
+  width: 320px;
+  min-height: 220px;
+  transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.feature-box:hover {
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 8px 24px rgba(40,81,151,0.18);
+  background: #2a60b1; /* Background becomes dark blue */
+  color: #ffffff; /* Text inside becomes white on hover */
+}
+.feature-title {
+  font-size: 1.3em;
+  font-weight: 700;
+  margin-bottom: 14px;
+  color: #FFD600;
+}
+.feature-desc {
+  font-size: 1em;
+  color: #000000;
+  line-height: 1.5;
+}
+.feature-box:hover .feature-desc {
+  color: #ffffff; /* Feature description text becomes white on hover */
+}
+
+/* ===== SECTION 2: LESSON/VIDEO PRESENTATION ===== */
+.lesson-video-container {
+  background: #fff;
+  border-radius: 18px;
+  min-height: 380px;
+  max-width: 900px;
+  margin: 0 auto;
+  margin-top: 32px;
+  margin-bottom: 32px;
+  box-shadow: 0 4px 24px rgba(40,81,151,0.10);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4em; /* Base font size for content directly in this container */
+  color: #000000; /* Changed default text color to black */
+}
+.lesson-box-link {
+  text-decoration: none;
+  color: #000000; /* Changed link text color to black */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.lesson-box {
+  background: #FFD600;
+  color: #000000; /* Changed text color on yellow background to black */
+  padding: 32px 32px;
+  border-radius: 10px;
+  font-size: 1.2em;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 200px;
+  height: 200px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  margin-top: 16px;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+}
+.lesson-box:hover {
+  background: #ffe066;
+  color: #204080;
+  box-shadow: 0 6px 18px rgba(40,81,151,0.18);
+}
+
+/* ===== SECTION 3: FOOTER ===== */
+.footer-section {
+  background: #285197;
+  color: #204080; /* This color might not be visible on #285197 background, consider #fff or a lighter shade */
+  padding: 48px 0 24px 0;
+  text-align: center;
+}
+.footer-columns {
+  display: flex;
+  justify-content: center;
+  gap: 56px;
+  flex-wrap: wrap;
+  margin-bottom: 0;
+}
+.footer-col {
+  min-width: 220px;
+  text-align: left;
+  flex: 1 1 0;
+  background: #285197; /* Same as parent, consider removing if no distinct background needed or make it slightly different */
+  border-radius: 14px;
+  box-shadow: 0 4px 18px rgba(40,81,151,0.18); /* This shadow might not be very visible on the same background */
+  padding: 24px 18px;
+  margin: 0 0 24px 0;
+  transition: box-shadow 0.2s, background 0.2s;
+  color: #fff; /* Changed for better visibility on dark background */
+}
+.footer-col h3 {
+  color: #ffffff;
+  font-size: 1.1em;
+  font-weight: 700;
+  margin-bottom: 12px;
+  position: relative;
+  display: inline-block;
+}
+.footer-underline {
+  display: block;
+  height: 3px;
+  width: 36px;
+  background: #FFD600;
+  border-radius: 2px;
+  margin-top: 4px;
+  position: absolute;
+  left: 0;
+  bottom: -8px;
+  content: ""; /* Though not strictly needed for a span, it's good practice if it were a pseudo-element */
+}
+.footer-desc {
+  font-size: 1em;
+  margin-bottom: 24px;
+  color: #fff;
+  max-width: 320px;
+}
+.footer-col ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 12px 0;
+}
+.footer-col ul li {
+  margin-bottom: 10px;
+}
+.footer-col ul li a {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 1em;
+  transition: color 0.2s;
+}
+.footer-col ul li a:hover {
+  color: #FFD600; /* Changed hover color for better feedback */
+}
+.footer-contact {
+  font-size: 1em;
+  color: #ffffff;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+}
+.footer-social-link svg,
+.footer-contact .footer-social-link svg {
+  transition: fill 0.2s, color 0.2s;
+}
+.footer-social-link.mail:hover svg { fill: #FFD600; }
+.footer-social-link.phone:hover svg { fill: #4CAF50; }
+.footer-social-link.location:hover svg { fill: #03a9f4; }
+.footer-social-link { vertical-align: middle; margin-right: 10px; }
+.footer-social-link:last-child { margin-right: 0; }
+.footer-icon { margin-right: 8px; }
+.footer-bottom {
+  text-align: center;
+  font-size: 0.98em;
+  color: #b3c6e0;
+  margin-top: 0;
+  padding-bottom: 18px;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 900px) {
+  .features, .footer-columns {
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+  }
+  .navbar {
+    flex-direction: column;
+    height: auto;
+    padding: 16px; /* Adjusted padding for stacked navbar */
+  }
+  .navbar-left {
+    margin-bottom: 12px; /* Space between logo/title and menu on small screens */
+  }
+  .navbar-menu {
+    margin-top: 12px;
+    flex-direction: column; /* Stack menu items */
+    width: 100%;
+  }
+  .navbar-menu li {
+    margin-left: 0;
+    width: 100%;
+    text-align: center; /* Center menu items */
+  }
+  .navbar-menu li a {
+    display: block; /* Make links take full width */
+    padding: 12px 18px; /* Adjust padding for stacked items */
+  }
+  .footer-col {
+    min-width: 0;
+    width: 90%; /* Adjust width for stacked columns */
+    max-width: 400px; /* Optional: constrain max width */
+  }
+}
+
+/* ===== QUIZ STYLES ===== */
+.section-quiz-area {
+  background: #e8edf3;
+  color: #204080;
+  padding: 48px 24px;
+  text-align: center;
+}
+.quiz-container {
+  max-width: 700px;
+  margin: 0 auto;
+  background: #fff;
+  padding: 32px;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(40,81,151,0.15);
+}
+.quiz-container h2 {
+  font-size: 2em;
+  font-weight: 700;
+  margin-bottom: 24px;
+  color: #000000; /* Changed from #285197 to black */
+}
+.quiz-container > p:first-of-type { /* Targets the introductory paragraph */
+  color: #000000;
+  margin-bottom: 20px; /* Added some margin for spacing */
+}
+#question-container {
+  margin-bottom: 24px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+#question-container.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+#question-text {
+  font-size: 1.4em;
+  font-weight: 600;
+  margin-bottom: 28px;
+  color: #000000; /* Added to make question text black */
+  line-height: 1.5;
+}
+.answer-options {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.answer-btn {
+  background: #f0f0f0; /* Changed from #285197 to light gray */
+  color: #000000; /* Changed from #fff to black */
+  font-weight: 600;
+  padding: 14px 24px;
+  border: 1px solid #cccccc; /* Added border */
+  border-radius: 8px;
+  font-size: 1em;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+  width: 100%;
+  box-sizing: border-box; /* Ensures padding and border don't increase width */
+}
+.answer-btn:hover:not([disabled]) {
+  background: #e0e0e0; /* Changed from #4666a3 to darker gray */
+  color: #000000; /* Ensure text remains black on hover */
+  transform: translateY(-2px);
+}
+.answer-btn.correct {
+  background: #4CAF50; /* Green */
+  color: white;
+}
+.answer-btn.incorrect {
+  background: #F44336; /* Red */
+  color: white;
+}
+.answer-btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+.quiz-controls button { /* This will also apply to .start-btn used in quiz */
+  margin-top: 20px;
+}
+.next-btn { /* Specific style for the next button if it uses .start-btn */
+  background: #FFD600; /* Already defined in .start-btn */
+  color: #285197; /* Already defined in .start-btn */
+}
+.next-btn:hover {
+  background: #ffe066; /* Already defined in .start-btn:hover */
+  color: #204080; /* Already defined in .start-btn:hover */
+}
+.hide { display: none !important; }
